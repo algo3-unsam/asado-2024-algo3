@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 import Invitado from 'src/domain/Invitados'
 import { faBowlFood, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons'
 
-const GenericCard = ({ invitado, onConfirm, onDelete, onEdit, onCancel, showCancelButton }) => {
-  const { nombre, apellido, comeEnsalada, confirmado } = invitado
+const GenericCard = ({ invitado, onConfirm, onDelete, onEdit, onCancel, showCancelButton, showMonto }) => {
+  const { nombre, apellido, comeEnsalada, confirmado, calcularMonto } = invitado
   const globalTheme = useTheme()
 
   return (
@@ -32,6 +32,11 @@ const GenericCard = ({ invitado, onConfirm, onDelete, onEdit, onCancel, showCanc
             {!confirmado && <FontAwesomeIcon icon={faTrash} onClick={(e) => { e.stopPropagation(); onDelete() }} />}
           </Stack>
         </Stack>
+        {confirmado && showMonto &&
+        <Typography variant="h6" gutterBottom sx={{ textAlign: 'center', margin: 'auto' }}>
+        Aporte: ${calcularMonto}
+      </Typography>
+          }
       </CardContent>
 
       <Stack direction="row" justifyContent="center" alignItems="center" px={2} pb={1}>
@@ -66,6 +71,7 @@ GenericCard.propTypes = {
   onEdit: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   showCancelButton: PropTypes.PropTypes.bool.isRequired,
+  showMonto: PropTypes.PropTypes.bool.isRequired,
 }
 
 export default GenericCard
