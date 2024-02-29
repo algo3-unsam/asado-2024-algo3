@@ -1,13 +1,12 @@
-import ConfirmadoService from "src/services/confirmadosServie"
+import ConfirmadoService from "src/services/confirmadosService"
 import { GenericCardListComponent } from "../genericView/genericView"
-import Invitado from "src/domain/Invitados"
 
 export const ConfirmadosView = () => {
     return(
 
         <GenericCardListComponent
             service={new ConfirmadoService()} 
-            tipoItem={new Invitado()} 
+            tipoVista={"confirmados"} 
         />
     )
 }

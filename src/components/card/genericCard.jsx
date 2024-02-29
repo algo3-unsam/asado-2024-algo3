@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Card, CardContent, Typography, Stack, Button } from '@mui/material'
 import PropTypes from 'prop-types'
 import Invitado from 'src/domain/Invitados'
-import { faBowlFood, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons' // Importa el icono de FontAwesome que deseas usar
+import { faBowlFood, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons'
 
-const GenericCard = ({ invitado, onConfirm, onDelete, onEdit }) => {
+const GenericCard = ({ invitado, onConfirm, onDelete, onEdit, onCancel, showCancelButton }) => {
   const { nombre, apellido, comeEnsalada, confirmado } = invitado
   const globalTheme = useTheme()
 
@@ -29,22 +29,31 @@ const GenericCard = ({ invitado, onConfirm, onDelete, onEdit }) => {
           <Stack direction="row" spacing={1}>
             {comeEnsalada && <FontAwesomeIcon icon={faBowlFood} />}
             {confirmado && <FontAwesomeIcon icon={faCheck} />}
-            {/* Reemplaza IconButton por FontAwesomeIcon */}
-            <FontAwesomeIcon icon={faTrash} onClick={(e) => { e.stopPropagation(); onDelete() }} />
+            {!confirmado && <FontAwesomeIcon icon={faTrash} onClick={(e) => { e.stopPropagation(); onDelete() }} />}
           </Stack>
         </Stack>
       </CardContent>
 
       <Stack direction="row" justifyContent="center" alignItems="center" px={2} pb={1}>
-        {!confirmado && 
-          <Button
-            variant="contained"
-            style={{ width: '100%', backgroundColor: 'green', color: 'white', borderRadius: '0.5rem', padding: '0.5rem 1rem' }}
-            onClick={(e) => { e.stopPropagation(); onConfirm() }}
-          >
-            Confirmar
-          </Button>
-        }
+      {confirmado && showCancelButton && 
+              <Button
+                variant="contained"
+                sx={{width: '100%', bgcolor: 'error.dark', color: 'white' }}
+                onClick={(e) => { e.stopPropagation(); onCancel() }}
+              >
+                Cancelar
+              </Button>
+            }
+            {!confirmado && 
+              <Button
+                variant="contained"
+                sx={{ width: '100%', bgcolor: 'success.main', color: 'white' }}
+                onClick={(e) => { e.stopPropagation(); onConfirm() }}
+              >
+                Confirmar
+              </Button>
+            }
+          
       </Stack>
     </Card>
   )
@@ -55,6 +64,8 @@ GenericCard.propTypes = {
   onConfirm: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  showCancelButton: PropTypes.PropTypes.bool.isRequired,
 }
 
 export default GenericCard

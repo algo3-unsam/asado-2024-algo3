@@ -20,6 +20,11 @@ class ConfirmadoService {
     async cancelarItem(id){
         await axios.put(`${REST_SERVER_URL}/cancelar/${id}`)
     }
+    
+    async obtenerMontoTotal() {
+          const response = await axios.get(`${REST_SERVER_URL}/monto`)
+          return response.data
+      }
  
 
 }

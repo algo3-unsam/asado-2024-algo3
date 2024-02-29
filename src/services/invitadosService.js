@@ -16,9 +16,18 @@ class InvitadoService {
         await axios.delete(`${REST_SERVER_URL}/borrar/${id}`)
     }
 
+
     async confirmarItem(id){
         await axios.put(`${REST_SERVER_URL}/confirmar/${id}`)
     }
+    
+    async cancelarItem(id){
+        await axios.put(`${REST_SERVER_URL}/cancelar/${id}`)
+    }
+
+    async actualizarInvitado(invitadoActualizado){
+        await axios.put(`${REST_SERVER_URL}/editar-invitado/${invitadoActualizado.id}`, invitadoActualizado.toJson())
+    }
 
 }
-export default InvitadoService 
+export const invitadoService = new InvitadoService()

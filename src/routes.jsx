@@ -4,7 +4,7 @@ import LayoutWrap from "./views/layoutWrap"
 import { useContext, useEffect } from 'react'
 import { Context } from './context/context'
 import ConfirmadosView from './views/confirmadosView/confirmadosView'
-import { FormInvitados } from './views/EditInvitados/EditInvitados'
+import FormInvitados from './views/EditInvitados/EditInvitados'
 
 export const AsadoRoutes = () => {
 
@@ -22,7 +22,7 @@ export const AsadoRoutes = () => {
         <Route path="/" element={<LayoutWrap/>} >
         <Route path="/invitados" element={<DoSomethingWrapper title="Invitados"><InvitadosView/></DoSomethingWrapper>} />
         <Route path="/confirmados" element={<DoSomethingWrapper title="Confirmados"><ConfirmadosView/></DoSomethingWrapper>} />
-        <Route path= "/Actualizar-Invitado" element={<DoSomethingWrapper title="Actualizar-Invitado"><FormInvitados/></DoSomethingWrapper>} />
+        <Route path= "/Actualizar-Invitado/:id" element={<DoSomethingWrapper title="Actualizar-Invitado"><FormInvitados/></DoSomethingWrapper>} />
 
         </Route>
         <Route path="*" element={<Navigate to="/invitados" />} />
