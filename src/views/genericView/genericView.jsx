@@ -108,6 +108,8 @@ export const GenericCardListComponent = ({ service, tipoVista }) => {
           onEdit={() => goToEditarItem(item)}
           onCancel={() => cancelarItem(item.id)}
           showCancelButton={tipoVista === "invitados"}
+          showMonto={tipoVista === "confirmados"}
+
         />
       )}
       {tipoVista === "confirmados" &&
