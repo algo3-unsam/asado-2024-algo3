@@ -33,9 +33,9 @@ const GenericCard = ({ invitado, onConfirm, onDelete, onEdit, onCancel, showCanc
           </Stack>
         </Stack>
         {confirmado && showMonto &&
-        <Typography variant="h6" gutterBottom sx={{ textAlign: 'center', margin: 'auto' }}>
-        Aporte: ${calcularMonto}
-      </Typography>
+        <Typography variant="h6" gutterBottom sx={{ textAlign: "center", margin: "auto" }}>
+         Aporte: ${calcularMonto}
+        </Typography>
           }
       </CardContent>
 

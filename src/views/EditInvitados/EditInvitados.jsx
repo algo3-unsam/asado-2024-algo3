@@ -8,17 +8,16 @@ import { invitadoService } from 'src/services/invitadosService'
 import Invitado from 'src/domain/Invitados'
 import { handleError } from 'src/services/config'
 
-const FormInvitados = () => {
+export const FormInvitados = () => {
   const location = useLocation()
-  const { invitado } = location.state
+  const invitado = location.state ? location.state.invitado : null
+
   console.log("Datos del invitado en FormInvitados:", invitado)
   const [comeEnsalada, setComeEnsalada] = useState(invitado.comeEnsalada)
   const [tomate, setTomate] = useState(invitado.ingredientesDeEnsalada.includes('tomate'))
   const [lechuga, setLechuga] = useState(invitado.ingredientesDeEnsalada.includes('lechuga'))
   const [cebolla, setCebolla] = useState(invitado.ingredientesDeEnsalada.includes('cebolla'))
-  const [montoDeConsumo, setMontoDeConsumo] = useState(0)
 
-  
 
   const navigate = useNavigate()
 
@@ -88,6 +87,7 @@ const FormInvitados = () => {
     <Container maxWidth="sm">
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
+          inputProps={{"data-testid":"nombre"}}
           label="Nombre"
           fullWidth
           required
@@ -99,6 +99,7 @@ const FormInvitados = () => {
           helperText={errors.nombre?.message}
         />
         <TextField
+          inputProps={{"data-testid":"apellido"}}
           label="Apellido"
           fullWidth
           required
@@ -110,6 +111,7 @@ const FormInvitados = () => {
           helperText={errors.apellido?.message}
         />
         <TextField
+          inputProps={{"data-testid":"gramosDeCarne"}}
           label="Gramos de Carne"
           type="number"
           fullWidth
@@ -125,6 +127,7 @@ const FormInvitados = () => {
           <FormControlLabel
             control={
               <Checkbox
+              inputProps={{"data-testid":"comeEnsalada"}}
                 {...register("comeEnsalada")}
                 checked={comeEnsalada}
                 onChange={(event) => setComeEnsalada(event.target.checked)}

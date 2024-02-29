@@ -16,8 +16,8 @@ onChange={(event, newValue) => {
     setValue(newValue)
 }}
 >
-<BottomNavigationAction component={Link} to="/invitados" label="Invitados" icon={<PersonIcon/>} />
-<BottomNavigationAction component={Link} to="/confirmados" label="Confirmados" icon={<DoneOutlineOutlined/>} />
+<BottomNavigationAction data-testId='botNavInvitados' component={Link} to="/invitados" label="Invitados" icon={<PersonIcon/>} />
+<BottomNavigationAction data-testId='botNavConfirmados' component={Link} to="/confirmados" label="Confirmados" icon={<DoneOutlineOutlined/>} />
 
 </BottomNavigation>
 
