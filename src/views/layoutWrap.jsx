@@ -18,9 +18,6 @@ const LayoutWrap = () => {
   }
   
   
-  LayoutWrap.propTypes = {
-  
-  }
   
   
   export default LayoutWrap
